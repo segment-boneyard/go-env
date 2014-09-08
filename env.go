@@ -11,3 +11,12 @@ func Get(name string) (string, error) {
 		return s, nil
 	}
 }
+
+// MustGet panics if the environment variable is missing.
+func MustGet(name string) string {
+	if s, err := Get(name); err == nil {
+		return s
+	} else {
+		panic(err)
+	}
+}
