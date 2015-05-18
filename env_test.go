@@ -4,6 +4,19 @@ import "github.com/bmizerany/assert"
 import "testing"
 import "os"
 
+func TestGetDefault(t *testing.T) {
+	{
+		s := GetDefault("SOMETHING", "nope")
+		assert.Equal(t, "nope", s)
+	}
+
+	{
+		os.Setenv("SOMETHING", "hey")
+		s := GetDefault("SOMETHING", "nope")
+		assert.Equal(t, "hey", s)
+	}
+}
+
 func TestGet(t *testing.T) {
 	{
 		s, err := Get("FOO")

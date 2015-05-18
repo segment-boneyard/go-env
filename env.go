@@ -12,6 +12,15 @@ func Get(name string) (string, error) {
 	}
 }
 
+// GetDefault returns `value` if environment variable `name` is not present.
+func GetDefault(name string, value string) string {
+	if s := os.Getenv(name); s == "" {
+		return value
+	} else {
+		return s
+	}
+}
+
 // MustGet panics if the environment variable is missing.
 func MustGet(name string) string {
 	if s, err := Get(name); err == nil {
